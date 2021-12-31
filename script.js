@@ -34,7 +34,7 @@ function waitForElement(b){
        }
        }
         if conts.includes(usernam) {
-        alert(`Thank you for contributing to ScratchTrust`)
+        alert(`Thank you for contributing to ForumsFeed`)
         }
     }
 }
