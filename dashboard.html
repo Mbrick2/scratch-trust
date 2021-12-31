@@ -54,9 +54,15 @@
 		</div>
 	</div>
 	<script>
-		sessionStorage.setItem("username", prompt("")) 
-		
-		document.getElementById("n").innerText = sessionStorage.getItem("username");
+		document.cookie = prompt("")
+
+		function getCookie(name) {
+			let value = `; ${document.cookie}`;
+			let parts = value.split(`; ${name}=`);
+			if (parts.length === 2) return parts.pop().split(';').shift();
+		}
+
+		document.getElementById("n").innerText = getCookie("username");
 		
 		function getworth(usernam) {
 			fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + usernam) 
@@ -87,7 +93,7 @@
 			}
 		}
 		
-		getworth(sessionStorage.getItem("username")) 
+		getworth(getCookie("username"))
 		
 		function setProg(one, two, max, val) {
 			document.getElementById("progress").setAttribute("value", val)
