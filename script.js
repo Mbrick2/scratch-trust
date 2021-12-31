@@ -3,7 +3,7 @@ fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + usernam)
     .then(response => response.json())
     .then(data => waitForElement(data.counts.total.count))
 }
-let conts = ['mbrick2','god286', 'yes-i-am-lanky']
+let conts = ['mbrick2','MagicCrayon9342', 'yes-i-am-lanky']
 function waitForElement(b){
     if(b == ""){
        setTimeout(waitForElement, 250);
