@@ -1,130 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-				<meta charset="UTF-8">
-				<title>Dashboard - ForumsFeed</title>
-				<style>
-								body {
-								font-family: Helvetica;
-								margin: 0;
-								}
+	<meta charset="UTF-8">
+	<title>Dashboard - ForumsFeed</title>
+	<style>
+		body {
+			font-family: Helvetica;
+			margin: 0;
+		}
 								
-								.header {
-								background-color: #4287f5;
-								color: white;
-								padding: 10px 20px;
-								}
+		.header {
+			background-color: #4287f5;
+			color: white;
+			padding: 10px 20px;
+		}
 								
-							 .container {
-								background-color: #4287f5;
-								color: white;
-								padding: 0 20px 10px 20px;
-								border: 3px solid #2b60b5;
-								border-radius: 20px;
-								margin-bottom: 10px;
-								}
+		.container {
+			background-color: #4287f5;
+			color: white;
+			padding: 0 20px 10px 20px;
+			border: 3px solid #2b60b5;
+			border-radius: 20px;
+			margin-bottom: 10px;
+		}
 								
-								.page {
-								padding: 15px 20px;
-								}
+		.page {
+			padding: 15px 20px;
+		}
 
-          input, button {
-          border-radius: 20px;
-          border: 1.5px solid lightgrey;
-          padding: 5px;
-          }
+		input, button {
+			border-radius: 20px;
+			border: 1.5px solid lightgrey;
+			padding: 5px;
+		}
 
-          button {
-          background-color: #4287f5;
-          color: white;
-          border: 1.5px solid #2b60b5;
-          }
-				</style>
+		button {
+			background-color: #4287f5;
+			color: white;
+			border: 1.5px solid #2b60b5;
+		}
+	</style>
 </head>
 <body>
-				<div class="header">
-								<h1>ForumsFeed Dashboard</h1>
-								<p>Logged in as <b id="n">Loading...</b></p>
-				</div>
-				<div class="page">
-															
-	
-	
-	<div class="container">
-	<h2>Progress</h2>
-	<b id="1">Loading...</b> <progress id="progress" style="width:20%"></progress>
-				<b id="2">Loading...</b>
+	<div class="header">
+		<h1>ForumsFeed Dashboard</h1>
+		<p>Logged in as <b id="n">Loading...</b></p>
 	</div>
-	
-				</div>
-				<script>document.cookie = prompt("") 
-							
-								// Thank you, https://stackoverflow.com/a/15724300
-							function getCookie(name) { const value = `; ${document.cookie}`; const parts = value.split(`; ${name}=`); if (parts.length === 2) return parts.pop().split(';').shift(); }
-								document.getElementById("n").innerText = getCookie("username");
-								
-								function getworth(usernam) {fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + usernam) .then(response => response.json()) .then(data => waitForElement(data.counts.total.count))}function waitForElement(b){ if(b == ""){ setTimeout(waitForElement, 250); }else{ if(b > 30000) {
-								
-								document.getElementById("progress").remove();
-								document.getElementById("2").remove();
-								
-								document.getElementById("1").innerText = "Veteran";
-								
-								}else{ if(b > 10000) { 
-								
-								document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 30000)
+	<div class="page">
+		<div class="container">
+			<h2>Progress</h2>
+			<b id="1">Loading...</b> <progress id="progress" style="width:20%"></progress>
+			<b id="2">Loading...</b>
+		</div>
+	</div>
+	<script>
+		sessionStorage.setItem("username", prompt("")) 
+		
+		document.getElementById("n").innerText = sessionStorage.getItem("username");
+		
+		function getworth(usernam) {
+			fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + usernam) 
+				.then(response => response.json())
+				.then(data => waitForElement(data.counts.total.count))
+		}
+		
+		function waitForElement(b) {
+			if (b == "") {
+				setTimeout(waitForElement, 250); 
+			}	else if (b > 30000) {
+				document.getElementById("progress").remove();
+				document.getElementById("2").remove();
 
-document.getElementById("1").innerText = "Experienced"; 
+				document.getElementById("1").innerText = "Veteran";								
+			} else if (b > 10000) { 	
+				setProg("Experienced", "Veteran", 30000, b)
+			} else if (b > 5000) { 				 
+				setProg("Trusty", "Experienced", 10000, b)
+			} else if (b > 1000) {
+				setProg("Helper", "Trusty", 5000, b)
+			} else if (b > 500) { 
+				setProg("Assistive Trainee", "Trusty", 1000, b)
+			} else if (b > 100) { 
+				setProg("Trainee", "Assistive Trainee", 500, b)
+			} else { 
+				setProg("Newcomer", "Trainee", 100, b)
+			}
+		}
+		
+		getworth(sessionStorage.getItem("username")) 
+		
+		function setProg(one, two, max, val) {
+			document.getElementById("progress").setAttribute("value", val)
+			document.getElementById("progress").setAttribute("max", max)
 
-document.getElementById("2").innerText = "Veteran";
-								
-								 }else{ if(b > 5000) { 
-								 
-								 document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 10000)
-
-document.getElementById("1").innerText = "Trusty"; 
-
-document.getElementById("2").innerText = "Experienced";
-								 
-								  }else{ if(b > 1000) { 
-								  
-								  document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 5000)
-
-document.getElementById("1").innerText = "Helper"; 
-
-document.getElementById("2").innerText = "Trusty";
-								  
-								  }else{ if(b > 500) { 
-								  
-								  document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 1000)
-
-document.getElementById("1").innerText = "Assistive Trainee"; 
-
-document.getElementById("2").innerText = "Trusty";
-								  
-								   }else{ if(b > 100) { 
-								   document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 500)
-
-document.getElementById("1").innerText = "Trainee"; 
-
-document.getElementById("2").innerText = "Assistive Trainee";
-								   
-								   }else{ 
-								   document.getElementById("progress").setAttribute("value", b)
-								document.getElementById("progress").setAttribute("max", 100)
-
-document.getElementById("1").innerText = "Newcomer"; 
-
-document.getElementById("2").innerText = "Trainee";
-								   
-								    } } } } } } }}
-								    alert("Attention! This page was made for testing purposes, please leave.")
-								    getworth(getCookie("username")) 
-				</script>
+			document.getElementById("1").innerText = one; 
+			document.getElementById("2").innerText = two;
+		}
+	</script>
 </body>
 </html>
