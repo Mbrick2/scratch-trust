@@ -23,3 +23,9 @@ function alertRating(b) {
     alert(`Newcomer - ${b} posts!`);
   }
 }
+
+let scratchers = ["Za-Chary", "Paddle2See", "Cheddargirl", "griffpatch", "Chrisg", "Ceebee", "ScratchCat", "BearSlothCoding", "deck26", "catsunited", "Sigton", "harakou", "maximouse", "makethebrainhappy", "mybearworld", "gosoccerboy5", "PATSATDAT", "nampinanathali", "Chiroyce", "ajsya", "MagicCrayon9342", "yes-i-am-lanky", "han614698", "dertermenter", "dhuls", "orangetheory", "ScratchCat1038", "yeetoburro1", "Bluebatstar", "-EmeraldThunder-", "CST1229"];
+
+window.onload = function() {
+	document.getElementById("username").value = scratchers[Math.floor(Math.random() * scratchers.length)];
+} 
