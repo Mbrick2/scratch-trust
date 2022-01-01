@@ -39,3 +39,4 @@ let scratchers = ["Za-Chary", "Paddle2See", "Cheddargirl", "griffpatch", "Chrisg
 
 window.onload = function() {
 document.getElementById("username").value = scratchers[Math.floor(Math.random * scratchers.length())];
+} 
