@@ -74,13 +74,13 @@
 		function waitForElement(b) {
 			if (b == "") {
 				setTimeout(waitForElement, 250); 
-			}	else if (b > 30000) {
+			}	else if (b > 15000) {
 				document.getElementById("progress").remove();
 				document.getElementById("2").remove();
 
 				document.getElementById("1").innerText = "Veteran";								
 			} else if (b > 10000) { 	
-				setProg("Experienced", "Veteran", 30000, b)
+				setProg("Experienced", "Veteran", 15000, b)
 			} else if (b > 5000) { 				 
 				setProg("Trusty", "Experienced", 10000, b)
 			} else if (b > 1000) {

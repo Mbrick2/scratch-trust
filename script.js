@@ -28,7 +28,7 @@ var b = data.counts.total.count;
 
     setTimeout(alertRating, 250);
 
-  } else if (b >= 30000) {
+  } else if (b >= 15000) {
 
     alert(`Veteran - ${b} posts!`);
 
