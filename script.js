@@ -1,8 +1,19 @@
-function getworth(usernam) {
-	fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + usernam)
-    .then(res => res.json())
-    .then(data => alertRating(data.counts.total.count))
-}
+
+
+
+
+
+function getworth(username) {
+ fetch("https://scratchdb.lefty.one/v3/forum/user/info/" + encodeURIComponent(username))
+ .then(function(response) {
+  if (!response.ok) {
+   alert(username +" is not on Scratch!");
+   return;
+  }
+  return response.json()
+  }
+  .then(data => alertRating(data.counts.total.count));
+ });
 
 function alertRating(b) {
   if (b == "") {
