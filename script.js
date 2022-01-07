@@ -1,4 +1,4 @@
-document.getElementById(rankbtn).style.display = 'block';
+document.getElementById("rankbtn").style.display = 'block';
 function copy() {
   text = `I am a ${rank}`
   copyText.setSelectionRange(0, 99999); 
@@ -72,7 +72,7 @@ var b = data.counts.total.count;
 
   }
 	
-  document.getElementById(rankbtn).style.display = 'none';
+  document.getElementById("rankbtn").style.display = 'none';
 
  } 
 
